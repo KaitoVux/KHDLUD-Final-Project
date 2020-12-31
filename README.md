@@ -10,3 +10,10 @@ Dựa trên việc phân tích các bình luận của sản phẩm, tiến hàn
 
 ## Cách thức thu thập
 Parse HTML từ trang Tiki.vn để lấy các dữ liệu cần thiết.
+## Hướng dẫn chạy các file notebook
+Chạy các file theo thứ tự sau:
+- Data Visualization
+- Training model
+- Prediction
+
+Hướng dẫn cụ thể đã được chú thích trong từng file.
