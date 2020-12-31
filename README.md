@@ -15,8 +15,7 @@ Chạy các file theo thứ tự sau:
 - Data Visualization
 - Training model
 - Prediction
+Hướng dẫn cụ thể đã được chú thích trong từng file.
 ## Phân chia công việc:
 - Đạt train model
 - Hồ crawl data
-
-Hướng dẫn cụ thể đã được chú thích trong từng file.
