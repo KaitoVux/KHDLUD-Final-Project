@@ -4,9 +4,11 @@ import time
 from selenium.webdriver.common.keys import Keys
 import csv
 
+# co the can phai truyen duong dan cua file chromedriver.exe
 browser = webdriver.Chrome()
 browser.maximize_window()
 
+# cao comments tu url cua san pham
 def crawlComment(url):
     records = []
     browser.get(url)
@@ -24,6 +26,7 @@ def crawlComment(url):
     html_source = browser.page_source
     soup = BeautifulSoup(html_source, 'html.parser')
 
+    # tat dialog
     button = browser.find_elements_by_css_selector(
         'button.align-right.secondary.slidedown-button')
     if(len(button) > 0):
@@ -33,6 +36,8 @@ def crawlComment(url):
         'div.filter-review__item')
 
     if(len(button) > 0):
+    
+        # filter comment 5 star
         button[3].click()
         time.sleep(1)
 
@@ -50,6 +55,7 @@ def crawlComment(url):
             print(record)
             records.append(record)
 
+        # filter comment 2 star va 1 star
         button[3].click()
         button[6].click()
         button[7].click()
@@ -72,6 +78,7 @@ def crawlComment(url):
 
     return records
 
+# tra ve tat ca url cua san pham trong danh muc
 def getProductDetailUrl(url):
     browser.get(url)
     # tat quang cao
@@ -110,11 +117,14 @@ def getProductDetailUrl(url):
 
     return urls
 
+# -------main-------
 
+# lay tat ca url san pham o danh muc deal-hot
 productUrls = getProductDetailUrl('https://tiki.vn/deal-hot?tab=now&page=1')
 
 fieldList = ['comment', 'is_trust']
 
+# cao data va dong thoi ghi vao file csv
 try:
     with open('khdl_final_final6.csv', 'w', encoding='utf-8') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldList)
@@ -122,7 +132,6 @@ try:
         for productUrl in productUrls:
             records = crawlComment(productUrl)
             for record in records:
-                print(record)
                 writer.writerow(
                     {'comment': record['comment'], 'is_trust': record['is_trust']})
 except IOError:
